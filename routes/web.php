@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,22 +20,22 @@ Route::get('/', function () {
 });
 
 
-Route::get('login', '')->name('login');
-Route::post('login-action', '');
-Route::get('register', '')->name('register');
-Route::get('register-action', '');
-Route::group(['prefix'=>'admin'], function(){
-    Route::get('login', '')->name('login');
-    Route::post('login-action', '');
-});
+Route::get('login', [UserController::class, 'showLogin'])->name('login');
+Route::post('login-action', [UserController::class, 'login']);
+Route::get('register', [UserController::class, 'showRegister'])->name('register');
+Route::post('register-action', [UserController::class, 'register']);
+// Route::group(['prefix'=>'admin'], function(){
+//     Route::get('login', '')->name('login');
+//     Route::post('login-action', '');
+// });
 
-Route::group(['middleware' => 'auth'], function(){
-    Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
-        Route::get('elections/create', '')->name('create-election');
-        Route::post('elections/create-action', '');
-        Route::post('login-action', '');
-    });
-    Route::get('elections', '')->name('elections');
-    Route::get('result/{election_uuid}', '');
-    Route::post('vote/{election_uuid}', '');
-});
+// Route::group(['middleware' => 'auth'], function(){
+//     Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
+//         Route::get('elections/create', '')->name('create-election');
+//         Route::post('elections/create-action', '');
+//         Route::post('login-action', '');
+//     });
+//     Route::get('elections', '')->name('elections');
+//     Route::get('result/{election_uuid}', '');
+//     Route::post('vote/{election_uuid}', '');
+// });
