@@ -15,10 +15,10 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->nullable();
-            $table->string('user_uuid')->nullable();
-            $table->string('election_uuid')->nullable();
-            $table->string('candidate_uuid')->nullable();
+            $table->string('uuid')->nullable()->default(null);
+            $table->string('user_uuid')->nullable()->default(null);
+            $table->string('election_uuid')->nullable()->default(null);
+            $table->string('candidate_uuid')->nullable()->default(null);
             $table->timestamps();
         });
     }

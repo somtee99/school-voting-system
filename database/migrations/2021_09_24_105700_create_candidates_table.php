@@ -15,11 +15,11 @@ class CreateCandidatesTable extends Migration
     {
         Schema::create('candidates', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->nullable();
-            $table->string('user_uuid')->nullable();
-            $table->string('election_uuid')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
+            $table->string('uuid')->nullable()->default(null);
+            $table->string('user_uuid')->nullable()->default(null);
+            $table->string('election_uuid')->nullable()->default(null);
+            $table->string('first_name')->nullable()->default(null);
+            $table->string('last_name')->nullable()->default(null);
             $table->timestamps();
         });
     }

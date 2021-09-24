@@ -15,10 +15,10 @@ class CreateElectionsTable extends Migration
     {
         Schema::create('elections', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid')->nullable();
-            $table->string('position')->nullable();
-            $table->string('start_time')->nullable();
-            $table->string('end_time')->nullable();
+            $table->string('uuid')->nullable()->default(null);
+            $table->string('position')->nullable()->default(null);
+            $table->string('start_time')->nullable()->default(null);
+            $table->string('end_time')->nullable()->default(null);
             $table->timestamps();
         });
     }
