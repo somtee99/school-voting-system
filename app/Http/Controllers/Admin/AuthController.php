@@ -30,7 +30,7 @@ class AuthController extends Controller
             return redirect('/');
           
         }else{
-            return redirect('/admin/login');
+            return redirect('/admin/election/create');
         }
     }
 }
