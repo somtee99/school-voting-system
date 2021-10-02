@@ -26,8 +26,11 @@ Route::post('login-action', [UserController::class, 'login']);
 Route::get('register', [UserController::class, 'showRegister'])->name('register');
 Route::post('register-action', [UserController::class, 'register']);
 Route::group(['prefix'=>'admin'], function(){
-    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::get('login', [AuthController::class, 'showLogin']);
     Route::post('login-action', [AuthController::class, 'login']);
+    Route::get('/', function () {
+        return redirect('admin/login');
+    });
 });
 
 Route::group(['middleware' => 'auth'], function(){

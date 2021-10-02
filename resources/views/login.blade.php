@@ -6,19 +6,19 @@
 <style>   
 Body {  
   font-family: Calibri, Helvetica, sans-serif;  
-  background-color: pink;  
+  background-color: #f1f1f1;  
 }  
 button {   
        background-color: #4CAF50;   
        width: 100%;  
-        color: orange;   
+        color: white;   
         padding: 15px;   
         margin: 10px 0px;   
         border: none;   
         cursor: pointer;   
          }   
  form {   
-        border: 3px solid #f1f1f1;   
+        border: 3px solid grey;   
     }   
  input[type=text], input[type=password] {   
         width: 100%;   
@@ -56,7 +56,7 @@ button {
             <input type="password" placeholder="Enter Password" name="password" required> 
 
             <button type="submit">Login</button>   
-             
+            <a href="{{ url('register') }}"> Don't Have an Account? </a>
         </div>   
     </form>     
 </body>     

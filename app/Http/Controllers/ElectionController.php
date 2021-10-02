@@ -50,7 +50,11 @@ class ElectionController extends Controller
     public function showElections(){
         $elections = Election::whereNotNull('uuid')->latest()->get();
         $user_type = Auth::user()->user_type;
+        $isAdmin = false;
+        if($user_type == 'admin'){
+            $isAdmin = true;
+        }
 
-        return view('elections')->with('elections', $elections)->with('user_type', $user_type);
+        return view('elections', ['elections' => $elections, 'isAdmin' => $isAdmin]);
     }
 }
