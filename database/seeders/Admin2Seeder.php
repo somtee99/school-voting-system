@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use Str;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class Admin2Seeder extends Seeder
