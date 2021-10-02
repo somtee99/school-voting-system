@@ -17,6 +17,8 @@ class ElectionController extends Controller
     public function createElection(request $request){
         $election = $request->all();
         $election['uuid'] = Str::uuid();
+        $election['start_time'] = Carbon::parse($request->start_time);
+        $election['end_time'] = Carbon::parse($request->end_time);
 
         //Poor Coding Here...I know
         $candidate['election_uuid'] = $election['uuid'];
@@ -26,12 +28,12 @@ class ElectionController extends Controller
         $candidate['uuid'] = Str::uuid();
         $candidate['first_name'] = $request->candidate2;
         Candidate::create($candidate);
-        if($request->has('candidate3')){
+        if(!is_null($request->candidate3)){ 
             $candidate['uuid'] = Str::uuid();
             $candidate['first_name'] = $request->candidate3;
             Candidate::create($candidate);
         }
-        if($request->has('candidate4')){
+        if(!is_null($request->candidate4)){
             $candidate['uuid'] = Str::uuid();
             $candidate['first_name'] = $request->candidate4;
             Candidate::create($candidate);
@@ -46,6 +48,9 @@ class ElectionController extends Controller
     }
 
     public function showElections(){
-        return view('elections');
+        $elections = Election::whereNotNull('uuid')->latest()->get();
+        $user_type = Auth::user()->user_type;
+
+        return view('elections')->with('elections', $elections)->with('user_type', $user_type);
     }
 }

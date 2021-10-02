@@ -18,9 +18,7 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 Route::get('login', [UserController::class, 'showLogin'])->name('login');
@@ -36,6 +34,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix'=>'admin', 'middleware' => 'admin'], function(){
         Route::get('election/create', [ElectionController::class, 'showCreateElection'])->name('create-election');
         Route::post('election/create-action', [ElectionController::class, 'createElection']);
+    });
+    Route::get('/', function () {
+        return redirect('elections');
     });
     Route::get('elections', [ElectionController::class, 'showElections'])->name('elections');
     // Route::get('result/{election_uuid}', '');

@@ -21,11 +21,11 @@ class VoteController extends Controller
         $now = Carbon::now();
 
         if($hasVoted){
-            return redirect()->route('elections', ['message' => 'You have voted already']);
+            return redirect('elections')->with(['message' => 'You have voted already', 'election_uuid' => $election_uuid]);
         }
 
         if($now->lessThan(Carbon::parse($election->start_time))){
-            return redirect()->route('elections', ['message' => 'Election has not started']);
+            return redirect('elections')->with(['message' => 'Election has not started', 'election_uuid' => $election_uuid]);
         }else if($now->lessThan(Carbon::parse($election->end_time))){
             $vote['uuid'] = Str::uuid();
             $vote['election_uuid'] = $election_uuid;
@@ -33,9 +33,9 @@ class VoteController extends Controller
             $vote['user_uuid'] = $user_uuid;
             Vote::create($vote);
 
-            return redirect()->route('elections', ['message' => 'Vote Counted']);
+            return redirect('elections')->with(['message' => 'Vote Counted', 'election_uuid' => $election_uuid]);
         }else{
-            return redirect()->route('elections', ['message' => 'Election has ended']);
+            return redirect('elections')->with(['message' => 'Election has ended', 'election_uuid' => $election_uuid]);
         }
         
     }
