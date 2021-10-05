@@ -20,7 +20,6 @@ class ElectionController extends Controller
         $election['start_time'] = Carbon::parse($request->start_time);
         $election['end_time'] = Carbon::parse($request->end_time);
 
-        //Poor Coding Here...I know
         $candidate['election_uuid'] = $election['uuid'];
         $candidate['uuid'] = Str::uuid();
         $candidate['first_name'] = $request->candidate1;

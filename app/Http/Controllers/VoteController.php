@@ -18,7 +18,7 @@ class VoteController extends Controller
         $user_uuid = Auth::user()->uuid;
         $hasVoted = Vote::where('election_uuid', $election_uuid)->where('user_uuid', $user_uuid)->exists();
         $election = Election::where('uuid', $election_uuid)->first();
-        $now = Carbon::now();
+        $now = Carbon::parse(Carbon::now('1')->toDateTimeString());
 
         if($hasVoted){
             return redirect('elections')->with(['message' => 'You have voted already', 'election_uuid' => $election_uuid]);
